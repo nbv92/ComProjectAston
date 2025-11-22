@@ -1,7 +1,7 @@
-package aston;
+package org.example.sort.Class;
 import java.util.*;
 
-public class autobuss {
+/*public class autobuss {
     public static void main(String[] args) {
         List<String> buss = Arrays.asList("model1", "model22", "model3", "model4444");
 
@@ -16,3 +16,4 @@ public class autobuss {
         System.out.println(buss);
     }
 }
+*/

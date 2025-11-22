@@ -1,4 +1,4 @@
-package org.example.sort;
+package org.example.sort.Class;
 
 public class Bus {
     private final Integer number;
