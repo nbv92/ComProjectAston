@@ -37,7 +37,7 @@ public class PanelController {
 
         // Закрываем первое окно
         Stage currentStage = (Stage) ButtonTextOne.getScene().getWindow();
-        currentStage.close();;
+        currentStage.close();
     }
 
     @FXML
