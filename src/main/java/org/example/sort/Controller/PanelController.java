@@ -1,26 +1,15 @@
 package org.example.sort.Controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.geometry.Insets;
-import javafx.scene.layout.StackPane;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
-
-
-import java.awt.*;
-
-import org.example.sort.Class.*;
+import org.example.sort.Class.Bus;
+import org.example.sort.Class.BusGenerator;
 
 /*Этот контроллер отвечает за кнопки в графическом приложении*/
 public class PanelController {
@@ -48,7 +37,7 @@ public class PanelController {
 
         // Закрываем первое окно
         Stage currentStage = (Stage) ButtonTextOne.getScene().getWindow();
-        currentStage.close();;
+        currentStage.close();
     }
 
     @FXML
@@ -105,26 +94,36 @@ public class PanelController {
                 int minMileage = 0; // Минимальный пробег
                 int maxMileage = 500000; // Максимальный пробег
 
-                List<Bus> buses = new ArrayList<>();
-                for (int i = 0; i < numberOfBuses; i++) {
-                    buses.add(BusGenerator.generateRandomBus(minNumber, maxNumber, minModel, maxModel, minMileage, maxMileage));
-                }
+                Bus[] buses = BusGenerator.generateRandomBusArray(
+                        numberOfBuses,
+                        minNumber, maxNumber,
+                        minModel, maxModel,
+                        minMileage, maxMileage
+                );
 
-                // Создаем новое окно для отображения списка автобусов
-                StackPane root3 = new StackPane();
-                VBox busListVBox = new VBox(10);
-                for (Bus bus : buses) {
-                    busListVBox.getChildren().add(new Label(bus.toString()));
-                }
-                root3.getChildren().add(busListVBox);
+                // Создание таблицы
+                TableView<Bus> table = new TableView<>();
 
-                Scene busListScene = new Scene(root2, 820, 640);
-                Stage busListStage = new Stage();
-                busListStage.setScene(busListScene);
-                busListStage.setTitle("Список автобусов");
-                busListStage.show();
+                TableColumn<Bus, Integer> colNum = new TableColumn<>("Номер");
+                colNum.setCellValueFactory(new PropertyValueFactory<>("number"));
 
-                // Закрываем текущее окно
+                TableColumn<Bus, Integer> colModel = new TableColumn<>("Модель");
+                colModel.setCellValueFactory(new PropertyValueFactory<>("model"));
+
+                TableColumn<Bus, Integer> colMileage = new TableColumn<>("Пробег");
+                colMileage.setCellValueFactory(new PropertyValueFactory<>("mileage"));
+
+                table.getColumns().addAll(colNum, colModel, colMileage);
+
+                // Добавляем данные
+                table.getItems().addAll(buses);
+
+                // Показываем окно
+                Stage tableStage = new Stage();
+                tableStage.setTitle("Список автобусов");
+                tableStage.setScene(new Scene(new StackPane(table), 820, 640));
+                tableStage.show();
+
                 secondStage.close();
             } catch (NumberFormatException e) {
                 // Обработка ошибки ввода (нечисловое значение)
