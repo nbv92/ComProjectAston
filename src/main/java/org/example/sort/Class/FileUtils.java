@@ -36,4 +36,15 @@ public class FileUtils {
 
         return list;
     }
+
+    public static <T> void writeToFile(CustomList<T> list, String filePath) {
+        try (var writer = new java.io.BufferedWriter(new java.io.FileWriter(filePath, true))) {
+            for (int i = 0; i < list.size(); i++) {
+                writer.write(list.get(i).toString());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
