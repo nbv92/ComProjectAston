@@ -1,12 +1,10 @@
 package org.example.sort.sort.strategy;
 
 import org.example.sort.Class.Bus;
-import org.example.sort.sort.MyList;
+import org.example.sort.CustomList;
 import org.example.sort.sort.SortStrategy;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 
 public class EvenNumberSortStrategy implements SortStrategy<Bus> {
 
@@ -17,7 +15,7 @@ public class EvenNumberSortStrategy implements SortStrategy<Bus> {
     }
 
     @Override
-    public void sort(MyList<Bus> list, Comparator<Bus> comparator) {
+    public void sort(CustomList<Bus> list, Comparator<Bus> comparator) {
         int n = list.size();
         boolean swapped;
 

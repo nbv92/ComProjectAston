@@ -1,6 +1,6 @@
 package org.example.sort.sort.strategy;
 
-import org.example.sort.sort.MyList;
+import org.example.sort.CustomList;
 import org.example.sort.sort.SortStrategy;
 
 import java.util.Comparator;
@@ -8,7 +8,7 @@ import java.util.Comparator;
 public class BubbleSortStrategy<T> implements SortStrategy<T> {
 
     @Override
-    public void sort(MyList<T> list, Comparator<T> comparator) {
+    public void sort(CustomList<T> list, Comparator<T> comparator) {
         int n = list.size();
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
