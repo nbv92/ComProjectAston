@@ -23,8 +23,6 @@ import java.util.stream.Stream;
 
 public class PanelController {
     @FXML private Label ButtonTextOne;
-    @FXML private Label ButtonTextTwo;
-    @FXML private Label ButtonTextThree;
 
     @FXML private TableView<Bus> busTable;
     private CustomList<Bus> busList = new CustomList<>();
@@ -74,7 +72,7 @@ public class PanelController {
         inputStage.setTitle("Добавление автобусов вручную");
         inputStage.show();
 
-        addButton.setOnAction(e -> {
+        addButton.setOnAction(_ -> {
             try {
                 Bus bus = Bus.builder()
                         .setNumber(Integer.parseInt(numberField.getText()))
@@ -118,7 +116,7 @@ public class PanelController {
         inputStage.setScene(new Scene(vbox, 300, 200));
         inputStage.setTitle("Random Data Input");
 
-        okButton.setOnAction(event -> {
+        okButton.setOnAction(_ -> {
             try {
                 int count = Integer.parseInt(inputField.getText());
                 if (count <= 0) throw new NumberFormatException();
@@ -138,19 +136,6 @@ public class PanelController {
         inputStage.show();
     }
 
-    private void showInfoStage(String text) {
-        Stage stage = new Stage();
-        VBox root = new VBox(10);
-        root.setPadding(new Insets(20));
-        root.getChildren().add(new Label("You are now in the " + text));
-        stage.setScene(new Scene(root, 820, 640));
-        stage.setTitle(text);
-        stage.show();
-
-        Stage current = (Stage) ButtonTextOne.getScene().getWindow();
-        current.close();
-    }
-
     private void showBusTable() {
         busTable = new TableView<>();
 
@@ -163,6 +148,7 @@ public class PanelController {
         TableColumn<Bus, Integer> colMileage = new TableColumn<>("Пробег");
         colMileage.setCellValueFactory(new PropertyValueFactory<>("mileage"));
 
+        //noinspection unchecked
         busTable.getColumns().addAll(colNum, colModel, colMileage);
         busTable.setItems(FXCollections.observableArrayList(listToArray()));
 
@@ -179,9 +165,9 @@ public class PanelController {
         stage.setTitle("Список автобусов");
         stage.show();
 
-        sortButton.setOnAction(e -> showSortDialog(busTable));
-        saveButton.setOnAction(e -> saveToFile());
-        countButton.setOnAction(e -> {
+        sortButton.setOnAction(_ -> showSortDialog());
+        saveButton.setOnAction(_ -> saveToFile());
+        countButton.setOnAction(_ -> {
             Bus selectedBus = busTable.getSelectionModel().getSelectedItem();
             if (selectedBus == null) {
                 showError("Пожалуйста, выберите автобус в таблице.");
@@ -205,7 +191,7 @@ public class PanelController {
             }).start();
         });
 
-        clearButton.setOnAction(e -> {
+        clearButton.setOnAction(_ -> {
             busList.clear();
             busTable.getItems().clear();
         });
@@ -218,7 +204,7 @@ public class PanelController {
         return arr;
     }
 
-    private void showSortDialog(TableView<Bus> table) {
+    private void showSortDialog() {
         Stage sortStage = new Stage();
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(20));
@@ -232,7 +218,7 @@ public class PanelController {
         sortStage.setScene(new Scene(vbox, 300, 200));
         sortStage.setTitle("Сортировка");
 
-        sortBtn.setOnAction(event -> {
+        sortBtn.setOnAction(_ -> {
             String field = comboBox.getValue();
             if (field == null) return;
 
@@ -261,27 +247,6 @@ public class PanelController {
         sortStage.show();
     }
 
-
-    private void showCountDialog() {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Подсчёт вхождений");
-        dialog.setHeaderText(null);
-        dialog.setContentText("Введите номер автобуса для подсчёта:");
-
-        dialog.showAndWait().ifPresent(input -> {
-            try {
-                int number = Integer.parseInt(input);
-                new Thread(() -> {
-                    int count = 0;
-                    for (int i = 0; i < busList.size(); i++)
-                        if (busList.get(i).getNumber() == number) count++;
-                    System.out.println("Количество автобусов с номером " + number + ": " + count);
-                }).start();
-            } catch (NumberFormatException e) {
-                showError("Введите корректное число.");
-            }
-        });
-    }
 
     private void saveToFile() {
         try {
