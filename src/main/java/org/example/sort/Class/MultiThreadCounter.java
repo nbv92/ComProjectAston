@@ -33,7 +33,7 @@ public class MultiThreadCounter {
             try {
                 worker.join();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
         }
 
