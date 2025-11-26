@@ -5,7 +5,7 @@ import org.example.sort.CustomList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MultiThreadCounter {
-    public static <T> void countOccurrences(CustomList<T> list, T target, int threads) {
+    public static <T> int countOccurrences(CustomList<T> list, T target, int threads) {
         AtomicInteger totalCount = new AtomicInteger(0);
         int size = list.size();
         Thread[] workers = new Thread[threads];
@@ -37,6 +37,6 @@ public class MultiThreadCounter {
             }
         }
 
-        System.out.println("The element " + target + " occurs " + totalCount.get() + " times");
+        return totalCount.get();
     }
 }
