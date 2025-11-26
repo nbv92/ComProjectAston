@@ -83,6 +83,11 @@ public class CustomList<T> {
         if (index < 0 || index >= size) throw new ArrayIndexOutOfBoundsException();
     }
 
+    public void clear() {
+        for (int i = 0; i < size; i++) elements[i] = null;
+        size = 0;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
