@@ -1,4 +1,6 @@
-package org.example.sort;
+package org.example.sort.utils;
+
+import org.example.sort.CustomList;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
