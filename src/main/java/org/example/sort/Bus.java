@@ -1,4 +1,4 @@
-package org.example.sort.Class;
+package org.example.sort;
 
 import java.util.Objects;
 

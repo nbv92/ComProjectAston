@@ -1,4 +1,4 @@
-package org.example.sort.Controller;
+package org.example.sort;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -10,8 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.example.sort.Class.*;
-import org.example.sort.CustomList;
+import org.example.sort.utils.*;
 import org.example.sort.sort.comparator.*;
 import org.example.sort.sort.strategy.BubbleSortStrategy;
 import org.example.sort.sort.strategy.EvenNumberSortStrategy;

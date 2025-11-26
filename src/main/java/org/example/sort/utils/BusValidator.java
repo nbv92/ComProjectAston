@@ -1,4 +1,6 @@
-package org.example.sort.Class;
+package org.example.sort.utils;
+
+import org.example.sort.Bus;
 
 public class BusValidator {
     public static void validateNumber(Integer number) {

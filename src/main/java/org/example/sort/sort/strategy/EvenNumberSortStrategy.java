@@ -1,6 +1,6 @@
 package org.example.sort.sort.strategy;
 
-import org.example.sort.Class.Bus;
+import org.example.sort.Bus;
 import org.example.sort.CustomList;
 import org.example.sort.sort.SortStrategy;
 

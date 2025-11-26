@@ -1,6 +1,6 @@
 package org.example.sort.sort.comparator;
 
-import org.example.sort.Class.Bus;
+import org.example.sort.Bus;
 
 import java.util.Comparator;
 

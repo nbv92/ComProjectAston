@@ -1,5 +1,6 @@
-package org.example.sort.Class;
+package org.example.sort.utils;
 
+import org.example.sort.Bus;
 import org.example.sort.CustomList;
 
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class FileUtils {
                     .forEach(list::add);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return list;
@@ -51,7 +52,7 @@ public class FileUtils {
                 writer.newLine();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }
