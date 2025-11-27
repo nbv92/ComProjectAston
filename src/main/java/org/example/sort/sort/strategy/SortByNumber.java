@@ -1,6 +1,8 @@
-package Interface;
+package org.example.sort.sort.strategy;
+
+import org.example.sort.Bus;
+
 import java.util.List;
-import Class.Bus;
 
 public class SortByNumber implements SortingStrategy {
 
@@ -9,8 +11,8 @@ public class SortByNumber implements SortingStrategy {
         for (int i = 0; i < buses.size() - 1; i++) {
             for (int j = 0; j < buses.size() - i - 1; j++) {
 
-                int num1 = Integer.parseInt(buses.get(j).getNumber());
-                int num2 = Integer.parseInt(buses.get(j + 1).getNumber());
+                int num1 = buses.get(j).getNumber();
+                int num2 = buses.get(j + 1).getNumber();
 
                 if (num1 > num2) {
                     Bus temp = buses.get(j);
